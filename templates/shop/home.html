@@ -1,0 +1,17 @@
+{% extends "shop/base.html" %}
+{% load static %}
+ {% block content %}
+
+
+
+{% for cocktail in cocktail %}
+
+<h1>{{ cocktail.title }}<br></h1>
+<img src="{{ cocktail.image.url }}" <br>
+<h3><p>{{ cocktail.recipe }}<p><br></h3>
+    {% for ingredients in cocktail.ingredients.all  %}
+         <h2>{{ ingredients.title }}<br></h2>
+        <img src="{{ ingredients.image.url }}" height=100px width=100px><br>
+    {% endfor %}
+{% endfor %}
+{% endblock %}
