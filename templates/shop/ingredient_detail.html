@@ -6,6 +6,11 @@
         <img src="{{ ingredient.image.url }}" height=100px width=100px><br>
         <h1>{{ ingredient.title }}</h1>
         <p class="price">${{ ingredient.price }}</p>
-        {{ ingredient.description|linebreaks }}
+        <form action="{% url "cart:cart_add" ingredient.id %}" method="post">
+        {{ cart_ingredient_form }}
+        {% csrf_token %}
+        <input type="submit" value="Add to cart">
+        </form>
+        {{ ingredient.description }}
     </div>
 {% endblock %}

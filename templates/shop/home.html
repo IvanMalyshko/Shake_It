@@ -6,9 +6,9 @@
 
 {% for cocktail in cocktail %}
 
-<h1>{{ cocktail.title }}<br></h1>
-<img src="{{ cocktail.image.url }}" <br>
-<h3><p>{{ cocktail.recipe }}<p><br></h3>
+<a href="{% url 'cocktaildetail' cocktail.id %}"><h1>{{ cocktail.title }}<br></h1></a>
+<img src="{{ cocktail.image.url }}"> <br>
+<p>{{ cocktail.recipe }}<p><br>
     {% for ingredients in cocktail.ingredients.all  %}
          <h2>{{ ingredients.title }}<br></h2>
         <img src="{{ ingredients.image.url }}" height=100px width=100px><br>

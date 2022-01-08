@@ -18,11 +18,9 @@ class IngredientAdmin(admin.ModelAdmin):
 admin.site.register(Ingredient, IngredientAdmin)
 
 
-class CocktailAdmin(admin.ModelAdmin):
-    list_display = ['title', 'recipe']
-    list_display_links = None
-    list_editable = ['title', 'recipe']
 
 
 
-admin.site.register(Cocktail, CocktailAdmin)
+
+
+admin.site.register(Cocktail)

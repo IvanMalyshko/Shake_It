@@ -1,12 +1,17 @@
-{% extends "shop/base.html" %}
+<!--{% extends "shop/base.html" %}-->
 {% load static %}
 
 {% block content %}
     <div class="product-detail">
-        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "media/no_image.png" %}{% endif %}">
-        <h1>{{ product.name }}</h1>
-        <h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2>
-        <p class="price">${{ product.price }}</p>
-        {{ product.description|linebreaks }}
-    </div>
+        <img src="{{ cocktail.image.url }}" height=100px width=100px><br>
+        <h1>{{ cocktail.title }}</h1>
+        <p> {{ cocktail.recipe|linebreaks }}</p>
+        {% for ingredients in cocktail.ingredients.all  %}
+         <a href="{% url 'ingredientdetail' ingredients.id %}"><h2>{{ ingredients.title }}<br></h2></a>
+        <img src="{{ ingredients.image.url }}" height=100px width=100px><br>
+    {% endfor %}
+        </div>
 {% endblock %}
+
+
+
