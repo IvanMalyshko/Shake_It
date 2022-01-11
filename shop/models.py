@@ -31,7 +31,7 @@ class Ingredient(models.Model):
         verbose_name_plural = 'Ингредиенты'
 
     def get_absolute_url(self):
-        return reverse('shop:product_detail',
+        return reverse('ingredient_detail',
                        args=[self.id])
 
     def __str__(self):

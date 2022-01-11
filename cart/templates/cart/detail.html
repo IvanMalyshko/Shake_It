@@ -32,21 +32,23 @@
                     </td>
                     <td>{{ ingredient.name }}</td>
                     <td>{{ item.quantity }}</td>
-                    <td><a href="{% url "cart:cart_remove" ingredient.id %}">Remove</a></td>
-                    <td class="num">${{ item.price }}</td>
-                    <td class="num">${{ item.total_price }}</td>
+                    <td><a style="margin-left: 12px" role="button" class="btn btn-primary styled-button" href="{% url "cart:cart_remove" ingredient.id %}">Remove</a></td>
+                    <td class="num"><h4>${{ item.price }}</h4></td>
+                    <td class="num"><h4>${{ item.total_price }}</h4></td>
+
                 </tr>
+
             {% endwith %}
         {% endfor %}
         <tr class="total">
-            <td>Total</td>
+            <td><h1>Total</h1></td>
             <td colspan="4"></td>
-            <td class="num">${{ cart.get_total_price }}</td>
+            <td class="num"><h2>${{ cart.get_total_price }}</h2></td>
         </tr>
         </tbody>
     </table>
     <p class="text-right">
-        <a href="{% url "shop:all_ingredients" %}" class="button light">Continue shopping</a>
-        <a href="#" class="button">Checkout</a>
+        <a style="margin-left: 12px" role="button" class="btn btn-primary styled-button" href="{% url "all_ingredients" %}" class="button light">Continue shopping</a>
+        <a style="margin-left: 12px" role="button" class="btn btn-primary styled-button" href="#" class="button">Checkout</a>
     </p>
 {% endblock %}

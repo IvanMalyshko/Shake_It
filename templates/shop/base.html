@@ -3,68 +3,75 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'shop/style.css'%}" type="text/css">
 
-  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{% static " shop/logo.png" %}">
 
-  <link rel="icon" type="image/png" href="{% static "shop/logo.png" %}">
-
-  <title>Shake_It</title>
+    <title>Shake_It</title>
 </head>
 <body>
 
 <nav id="topNav" class="navbar navbar-expand-md navbar-light">
     <div class="container">
-      <a class="navbar-brand" href="{% url 'home' %}">
-        <img src="{% static "shop/logo.png" %}" width=75px height=75px class="d-inline-block align-top" alt="Ivan's Logo">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse text-center" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a style="margin-left: 12px" role="button" href="#" class="btn btn-primary">About Shop</a>
-          </li>
-          <li class="nav-item">
-            <a style="margin-left: 12px" role="button" href="#" class="btn btn-primary">About Me</a>
-          </li>
-          <li>
-            <a style="margin-left: 12px" role="button" href="#" class="btn btn-primary">Shop</a>
-          </li>
-        </ul>
-      </div>
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static "shop/logo.png" %}" width=150px height=150px class="d-inline-block align-top" alt="Ivan's
+            Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-center" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a style="margin-left: 12px" role="button" href="{% url 'cart:cart_detail' %}"
+                       class="btn btn-primary styled-button">Cart
+                    </a>
+                </li>
+                <li>
+                    <a style="margin-left: 12px" role="button" href="{% url 'all_ingredients' %}"
+                       class="btn btn-primary styled-button">Shop
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </nav>
+</nav>
 
-
-
-
-
-
-<div id="subheader" >
+#
+<div class="container">
     <div class="cart">
-        Your cart is empty.
+       {% with total_items=cart|length %}
+        {% if cart|length > 0 %}
+            Your cart:
+            <a href="{% url "cart:cart_detail" %}">
+                {{ total_items }} item{{ total_items|pluralize }},
+                ${{ cart.get_total_price }}
+            </a>
+        {% else %}
+            Your cart is empty.
+        {% endif %}
+    {% endwith %}
     </div>
 </div>
 
 
+<div class="container">
 
-<div id="content">
     {% block content %}
     {% endblock %}
+
 </div>
 
-<!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<!--<a style="margin-left: 12px" role="button" href="#" class="btn btn-primary styled-button">About Shop</a>-->
 </body>
 
 </html>

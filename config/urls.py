@@ -20,15 +20,15 @@ from shop import views
 from django.conf.urls.static import static
 from django.conf import settings
 
-app_name='shop'
+
 
 urlpatterns = [
     # shop and cocktail_base
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('allingredients/', views.all_ingredients, name='allingredients'),
-    path('cocktail/<int:cocktail_id>/', views.cocktail_detail, name='cocktaildetail'),
-    path('ingredient/<int:ingredient_id>/', views.ingredient_detail, name='ingredientdetail'),
+    path('all_ingredients/', views.all_ingredients, name='all_ingredients'),
+    path('cocktail/<int:cocktail_id>/', views.cocktail_detail, name='cocktail_detail'),
+    path('ingredient/<int:ingredient_id>/', views.ingredient_detail, name='ingredient_detail'),
 
     # cart
     path('cart/', include('cart.urls', namespace='cart')),

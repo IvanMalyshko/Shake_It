@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="product-detail">
-        <img src="{{ ingredient.image.url }}" height=100px width=100px><br>
+        <img src="{{ ingredient.image.url }}" style="max-width:150px"><br>
         <h1>{{ ingredient.title }}</h1>
         <p class="price">${{ ingredient.price }}</p>
         <form action="{% url "cart:cart_add" ingredient.id %}" method="post">

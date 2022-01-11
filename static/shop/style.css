@@ -1,0 +1,14 @@
+.cocktail-content:not(:last-child) {
+                                    border-bottom: 1px ridge #20B2AA;
+                                    padding-bottom:32px;
+                                    }
+
+.styled-button{
+                    background-color: #20B2AA;
+                    border-color: #20B2AA;
+}
+
+.styled-button:hover{
+                    background-color: #008B8B;
+                    border-color: #008B8B;
+}

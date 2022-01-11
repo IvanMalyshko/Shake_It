@@ -1,4 +1,4 @@
-<!--{% extends "shop/base.html" %}-->
+{% extends "shop/base.html" %}
 {% load static %}
 
 {% block content %}
@@ -7,7 +7,7 @@
         <h1>{{ cocktail.title }}</h1>
         <p> {{ cocktail.recipe|linebreaks }}</p>
         {% for ingredients in cocktail.ingredients.all  %}
-         <a href="{% url 'ingredientdetail' ingredients.id %}"><h2>{{ ingredients.title }}<br></h2></a>
+         <a href="{% url 'ingredient_detail' ingredients.id %}"><h2>{{ ingredients.title }}</h2></a>
         <img src="{{ ingredients.image.url }}" height=100px width=100px><br>
     {% endfor %}
         </div>
