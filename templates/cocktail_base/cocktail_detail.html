@@ -2,15 +2,30 @@
 {% load static %}
 
 {% block content %}
-    <div class="product-detail">
-        <img src="{{ cocktail.image.url }}" height=100px width=100px><br>
-        <h1>{{ cocktail.title }}</h1>
-        <p> {{ cocktail.recipe|linebreaks }}</p>
-        {% for ingredients in cocktail.ingredients.all  %}
-         <a href="{% url 'ingredient_detail' ingredients.id %}"><h2>{{ ingredients.title }}</h2></a>
-        <img src="{{ ingredients.image.url }}" height=100px width=100px><br>
-    {% endfor %}
+<div class="ingredient-card" style="margin-bottom:24px; padding:20px">
+    <h3>{{ cocktail.title }}</h3>
+    <div class="row">
+        <div class="col-2" style="display: flex;align-items: center">
+            <div class="cocktail-image">
+                <img src="{{ cocktail.image.url }}" style="max-width:150px; max-height:250px">
+            </div>
         </div>
+        <div class="col-10 row" style="flex-direction: row; display: flex; flex-wrap: wrap; justify-content: space-between">
+            {% for ingredients in cocktail.ingredients.all %}
+            <div class="col-4" style="display: flex; flex-direction: column; align-items: center; margin-bottom:16px; text-align:center;">
+                <a href="{% url 'ingredient_detail' ingredients.id %}">
+                    <h7>{{ ingredients.title }}</h7>
+                </a>
+                <img style="border-radius:24px" src="{{ ingredients.image.url }}" height=85px width=85px>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<p> {{ cocktail.recipe| linenumbers | linebreaks }}</p>
+
+
 {% endblock %}
 
 
