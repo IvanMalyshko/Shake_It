@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path
+
+import orders
 from shop import views
 from django.conf.urls.static import static
 from django.conf import settings
@@ -33,7 +35,11 @@ urlpatterns = [
     # cart
     path('cart/', include('cart.urls', namespace='cart')),
 
+    # orders
+    path('orders/', include('orders.urls', namespace='orders')),
+
     # authorization
+    path('singup/', views.singupuser, name='singupuser'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

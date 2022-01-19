@@ -4,24 +4,26 @@
 
 
 {% for cocktail in cocktail %}
-
-<div style="margin-top:32px; margin-bottom:24px">
-    <a href="{% url 'cocktail_detail' cocktail.id %}"><h1>{{ cocktail.title }}<br></h1></a>
-</div>
-<div class='row cocktail-content'>
-    <div class="col-2" style="display: flex;align-items: center">
-        <div>
-            <img src="{{ cocktail.image.url }}" style="max-width:150px"> <br>
-        </div>
+<div class="ingredient-card" style="margin-bottom:24px; padding: 20px;">
+    <div style="margin-bottom:24px">
+        <a href="{% url 'cocktail_detail' cocktail.id %}"><h4>{{ cocktail.title }}<br></h4></a>
     </div>
-    <p><br>
-    <div class="col-10 row" style="flex-direction: row; display: flex; flex-wrap:wrap; justify-content: space-between">
-        {% for ingredients in cocktail.ingredients.all %}
-        <div class="col-4" style="display: flex; flex-direction: column; align-items: center;"><h5
-                style="text-align: center;">{{ ingredients.title }}</h5>
-            <img src="{{ ingredients.image.url }}" height=100px width=100px><br>
+    <div class='row'>
+        <div class="col-2" style="display: flex;align-items: center">
+            <div class="cocktail-image">
+                <img src="{{ cocktail.image.url }}" style="max-width:100px"> <br>
+            </div>
         </div>
-        {% endfor %}
+        <p><br>
+        <div class="col-10 row"
+             style="flex-direction: row; display: flex; flex-wrap:wrap; justify-content: space-between">
+            {% for ingredients in cocktail.ingredients.all %}
+            <div class="col-4" style="display: flex; flex-direction: column; align-items: center;">
+                <h7 style="text-align: center;">{{ ingredients.title }}</h7>
+                <img style="border-radius:24px" src="{{ ingredients.image.url }}" height=100px width=100px><br>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 

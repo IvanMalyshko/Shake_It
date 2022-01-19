@@ -17,10 +17,4 @@ class IngredientAdmin(admin.ModelAdmin):
 
 admin.site.register(Ingredient, IngredientAdmin)
 
-
-
-
-
-
-
 admin.site.register(Cocktail)
