@@ -4,11 +4,11 @@
 {% block content %}
 
 {{ error }}
-
+<h3>LOGIN</h3>
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="btn btn-primary styled-button">Sing Up</button>
+    <button type="submit" class="btn btn-primary styled-button">Login</button>
 </form>
 
 {% endblock %}
