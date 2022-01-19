@@ -1,0 +1,58 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+    Your shopping cart
+{% endblock %}
+{% block content %}
+<h1 xmlns:cart="http://www.w3.org/1999/xhtml">Your shopping cart</h1>
+    <table class="cart" style="width:100%">
+        <thead>
+        <tr>
+            <th style="width:15%"><h6>Image</h6></th>
+            <th style="width:30%"><h6>Product</h6></th>
+            <th style="width:15%"><h6>Quantity</h6></th>
+            <th style="width:20%"><h6>Price</h6></th>
+            <th style="width:20%"><h6>Unit price</h6></th>
+            <th style="width:20%"><h6>Remove</h6></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with ingredient=item.ingredient %}
+                <tr style="padding-bottom:24px">
+                    <td style="padding-bottom: 24px;">
+                        <a href="{{ ingredient.get_absolute_url }}">
+                            <img style="max-width:100px; border-radius:24px" src="
+                                {% if ingredient.image %}
+                                    {{ ingredient.image.url }}
+                                {% else %}
+                                    {% static "cart/no_image.jpg" %}
+                                {% endif %}">
+                        </a>
+                    </td>
+                    <td><h7>{{ ingredient.title }}</h7></td>
+                    <td><div style="padding-left:16px;"><h7>{{ item.quantity }}</h7></div></td>
+                    <td class="num"><h7>${{ item.price }}</h7></td>
+                    <td class="num"><h7>${{ item.total_price }}</h7></td>
+                    <td><a style="margin-left: 12px" role="button" class="btn btn-primary styled-button"
+                           href="{% url "cart:cart_remove" ingredient.id %}">Remove
+                        </a>
+                    </td>
+
+                </tr>
+
+
+            {% endwith %}
+        {% endfor %}
+        <tr class="total">
+            <td><h6>Total</h6></td>
+            <td colspan="4"></td>
+            <td class="num"><h5>${{ cart.get_total_price }}</h5></td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+        <a style="margin-left: 12px" role="button" class="btn btn-primary styled-button" href="{% url "all_ingredients" %}" class="button light">Continue shopping</a>
+        <a style="margin-left: 12px" role="button" class="btn btn-primary styled-button" href="{% url "orders:order_create" %}" class="button">Checkout</a>
+    </p>
+{% endblock %}

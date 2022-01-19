@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -29,6 +30,10 @@ class Ingredient(models.Model):
         verbose_name = 'Ингредиенты'
         verbose_name_plural = 'Ингредиенты'
 
+    def get_absolute_url(self):
+        return reverse('ingredient_detail',
+                       args=[self.id])
+
     def __str__(self):
         return self.title
 
@@ -38,7 +43,6 @@ class Cocktail(models.Model):
     image = models.ImageField(upload_to='media/cocktail/', blank=False)
     recipe = models.TextField(blank=True)
     ingredients = models.ManyToManyField(Ingredient)
-
 
     class Meta:
         ordering = ('title',)

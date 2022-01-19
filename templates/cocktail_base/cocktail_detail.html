@@ -2,11 +2,31 @@
 {% load static %}
 
 {% block content %}
-    <div class="product-detail">
-        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "media/no_image.png" %}{% endif %}">
-        <h1>{{ product.name }}</h1>
-        <h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2>
-        <p class="price">${{ product.price }}</p>
-        {{ product.description|linebreaks }}
+<div class="ingredient-card" style="margin-bottom:24px; padding:20px">
+    <h3>{{ cocktail.title }}</h3>
+    <div class="row">
+        <div class="col-2" style="display: flex;align-items: center">
+            <div class="cocktail-image">
+                <img src="{{ cocktail.image.url }}" style="max-width:150px; max-height:250px">
+            </div>
+        </div>
+        <div class="col-10 row" style="flex-direction: row; display: flex; flex-wrap: wrap; justify-content: space-between">
+            {% for ingredients in cocktail.ingredients.all %}
+            <div class="col-4" style="display: flex; flex-direction: column; align-items: center; margin-bottom:16px; text-align:center;">
+                <a href="{% url 'ingredient_detail' ingredients.id %}">
+                    <h7>{{ ingredients.title }}</h7>
+                </a>
+                <img style="border-radius:24px" src="{{ ingredients.image.url }}" height=85px width=85px>
+            </div>
+            {% endfor %}
+        </div>
     </div>
+</div>
+
+<p> {{ cocktail.recipe| linenumbers | linebreaks }}</p>
+
+
 {% endblock %}
+
+
+
