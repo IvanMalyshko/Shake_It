@@ -1,0 +1,13 @@
+{% extends "shop/base.html" %}
+{% load static %}
+ {% block content %}
+
+    {% for ingredient in ingredient %}
+
+        <h1>{{ ingredient.title }}<br></h1>
+        <h5>{{ ingredient.category }}<br></h5>
+        <img src="{{ ingredient.image.url }}" height=100px width=100px><br>
+        {{ ingredient.price }}<br><br>
+
+    {% endfor %}
+{% endblock %}
