@@ -36,21 +36,22 @@
                         {% csrf_token %}
                         <button type="submit" class="btn btn-primary styled-button">Logout</button>
                     </form>
+                    <li class="nav-item">
+                        <a style="margin-left: 12px" role="button" href="{% url 'cart:cart_detail' %}"
+                           class="btn btn-primary styled-button">Cart
+                        </a>
+                    </li>
+                     <li>
+                        <a style="margin-left: 12px" role="button" href="{% url 'all_ingredients' %}"
+                           class="btn btn-primary styled-button">Shop
+                        </a>
+                     </li>
                     {% else %}
-                    <a href="{% url 'singupuser' %}" class="btn btn-primary styled-button">Sing Up</a>
-                    <a href="{% url 'loginuser' %}" class="btn btn-primary styled-button">Login</a>
+                        <a href="{% url 'singupuser' %}" class="btn btn-primary styled-button">Sing Up</a>
+                        <a href="{% url 'loginuser' %}" class="btn btn-primary styled-button">Login</a>
                     {% endif %}
                 </li>
-                <li class="nav-item">
-                    <a style="margin-left: 12px" role="button" href="{% url 'cart:cart_detail' %}"
-                       class="btn btn-primary styled-button">Cart
-                    </a>
-                </li>
-                <li>
-                    <a style="margin-left: 12px" role="button" href="{% url 'all_ingredients' %}"
-                       class="btn btn-primary styled-button">Shop
-                    </a>
-                </li>
+
             </ul>
             <div class="ml-auto" style="margin-top:12px">
                 {% with total_items=cart|length %}
