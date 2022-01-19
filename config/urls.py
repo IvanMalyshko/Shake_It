@@ -40,6 +40,8 @@ urlpatterns = [
 
     # authorization
     path('singup/', views.singupuser, name='singupuser'),
+    path('logout/', views.logoutuser, name='logoutuser'),
+    path('login/', views.loginuser, name='loginuser'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
