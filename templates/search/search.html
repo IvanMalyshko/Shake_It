@@ -4,8 +4,9 @@
 {% block content %}
 
 {% for cocktail in cocktail %}
-{{ cocktail.title }}
+<a href="{% url 'cocktail_detail' cocktail.id %}"><h4>{{ cocktail.title }}<br></h4></a>
 <img src="{{ cocktail.image.url }}" style="max-width:100px">
 {% endfor %}
+Found {{ number_of_results }} results
 
 {% endblock %}
