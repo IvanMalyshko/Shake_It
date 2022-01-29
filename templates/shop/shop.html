@@ -12,14 +12,14 @@
                 <h3 style="text-align: center;">{{ ingredients.title }}<br></h3>
             </a>
             <h5>${{ ingredients.price }} <br></h5>
-            <img src="{{ ingredients.image.url }}" style="max-width:150px">
+            <img src="{{ ingredients.image.url }}" style="max-width:150px; border-radius: 24px">
             <div style="height:100%"></div>
             <h6>{{ ingredients.category }}<br></h6>
        </div>
 <!--        {{ ingredients.description }}-->
     </div>
 
-<!--    <div> # почему не появляется кнопка с колличеством(-->
+<!--    <div>-->
 <!--        <form action="{% url "cart:cart_add" ingredients.id %}" method="post">-->
 <!--            {{ cart_ingredient_form }}-->
 <!--            {% csrf_token %}-->
