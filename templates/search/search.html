@@ -1,0 +1,11 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% for cocktail in cocktail %}
+{{ cocktail.title }}
+<img src="{{ cocktail.image.url }}" style="max-width:100px">
+{% endfor %}
+
+{% endblock %}

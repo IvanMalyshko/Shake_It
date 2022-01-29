@@ -1,9 +1,11 @@
 {% extends "shop/base.html" %}
 {% load static %}
+
 {% block content %}
 
 
 {% for cocktail in cocktail %}
+
 <div class="ingredient-card" style="margin-bottom:24px; padding: 20px;">
     <div style="margin-bottom:24px">
         <a href="{% url 'cocktail_detail' cocktail.id %}"><h4>{{ cocktail.title }}<br></h4></a>
@@ -28,4 +30,5 @@
 </div>
 
 {% endfor %}
+
 {% endblock %}

@@ -1,6 +1,5 @@
-.body {
-padding: 0px
-margin: 0px
+.bck-img{
+    background: url("/static/fon.jpg") repeat-y;
 }
 
 .styled-button{
