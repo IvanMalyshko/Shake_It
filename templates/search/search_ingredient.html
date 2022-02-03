@@ -1,0 +1,12 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% for ingredient in ingredient %}
+<a href="{% url 'ingredient_detail' ingredient.id %}"><h4>{{ ingredient.title }}<br></h4></a>
+<img src="{{ ingredient.image.url }}" style="max-width:100px">
+{% endfor %}
+Found {{ number_of_results }} results
+
+{% endblock %}
