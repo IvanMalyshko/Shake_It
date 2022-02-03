@@ -3,6 +3,14 @@
 
 {% block content %}
 
+<div style="align-items: center; flex-direction: column; display: flex; margin-bottom: 24px">
+    <form action="{% url 'search:search_cocktail' %}" method="GET" style="display: flex; align-items: center;">
+        <input name="query" placeholder="Enter cocktail or ingredient..." style="width: 500px">
+        <button  style="margin-left:12px" type="submit" class="btn btn-primary styled-button">
+        Search
+        </button>
+    </form>
+</div>
 
 {% for cocktail in cocktail %}
 
@@ -30,5 +38,6 @@
 </div>
 
 {% endfor %}
+
 
 {% endblock %}
