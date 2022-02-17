@@ -51,3 +51,6 @@ class Cocktail(models.Model):
 
     def __str__(self):
         return self.title
+
+    def __iter__(self):
+        return iter(self.ingredients.all())

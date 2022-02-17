@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'shop/style.css'%}">
+    <link rel="stylesheet" href="{% static 'shop/style.css'%}?{% now 'U' %}">
 
     <link rel="icon" type="image/png" href="{% static 'shop/logo1.png' %}">
 
@@ -23,68 +23,65 @@
 <nav id="topNav" class="navbar navbar-expand-md navbar-light">
     <div class="container" style="align-items: end;">
         <a class="navbar-brand" href="{% url 'home' %}">
-            <img src="{% static 'shop/logo1.png' %}" width=150px height=150px class="d-inline-block align-top"
-            alt="Shake It">
+            <img src="{% static 'shop/logo1.png' %}" class="logo-img" alt="Shake It">
         </a>
-                <div class="collapse navbar-collapse text-center" id="navbarNav"
-                     style="flex-direction: column; margin-bottom: 6px;">
-                    <ul class="navbar-nav ml-auto">
-                        <li>
-                            {% if user.is_authenticated %}
-                            <div style="display: flex; align-items: center;">
-                                Logged in as&nbsp<span style="font-weight: 700">{{ user.username }}</span>
-                                <form action="{% url 'logoutuser' %}" method="POST">
-                                    {% csrf_token %}
-                                    <button style="margin-left:12px" type="submit" class="btn btn-primary styled-button">
-                                        Logout
-                                    </button>
-                                </form>
-                            </div>
-                            <li class="nav-item">
-                                <a style="margin-left: 12px" role="button" href="{% url 'cart:cart_detail' %}"
-                                   class="btn btn-primary styled-button">Cart
-                                </a>
-                            </li>
-                             <li>
-                                <a style="margin-left: 12px" role="button" href="{% url 'all_ingredients' %}"
-                                   class="btn btn-primary styled-button">Shop
-                                </a>
-                             </li>
-                            {% else %}
-                                <a href="{% url 'singupuser' %}" class="btn btn-primary styled-button">
-                                    Sing Up
-                                </a>
-                                <a href="{% url 'loginuser' %}" class="btn btn-primary styled-button">
-                                    Login
-                                </a>
-                            {% endif %}
-                        </li>
-                    </ul>
-                    <div class="ml-auto" style="margin-top:12px">
-                        {% with total_items=cart|length %}
-                        {% if cart|length > 0 %}
-                        Your cart:
-                        <a href="{% url 'cart:cart_detail' %}">
-                        {{ total_items }} item{{ total_items|pluralize }},
-                        ${{ cart.get_total_price }}
-                        </a>
-                        {% else %}
-                        Your cart is empty.
-                        {% endif %}
-                        {% endwith %}
+        <div class="collapse navbar-collapse text-center top-bar" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li>
+                    {% if user.is_authenticated %}
+                    <div style="display: flex; align-items: center;">
+                        Logged in as&nbsp<span style="font-weight: 700">{{ user.username }}</span>
+                        <form action="{% url 'logoutuser' %}" method="POST">
+                            {% csrf_token %}
+                            <button style="margin-left:12px" type="submit" class="btn btn-primary styled-button">
+                                Logout
+                            </button>
+                        </form>
                     </div>
-                </div>
+                <li class="nav-item">
+                    <a role="button" href="{% url 'cart:cart_detail' %}"
+                       class="btn btn-primary styled-button ml-12">Cart
+                    </a>
+                </li>
+                <li>
+                    <a role="button" href="{% url 'all_ingredients' %}"
+                       class="btn btn-primary styled-button ml-12">Shop
+                    </a>
+                </li>
+                {% else %}
+                <a href="{% url 'singupuser' %}" class="btn btn-primary styled-button ml-12">
+                    Sing Up
+                </a>
+                <a href="{% url 'loginuser' %}" class="btn btn-primary styled-button ml-12">
+                    Login
+                </a>
+                {% endif %}
+                </li>
+            </ul>
+            <div class="ml-auto" style="margin-top:12px">
+                {% with total_items=cart|length %}
+                {% if cart|length > 0 %}
+                Your cart:
+                <a href="{% url 'cart:cart_detail' %}">
+                    {{ total_items }} item{{ total_items|pluralize }},
+                    ${{ cart.get_total_price }}
+                </a>
+                {% else %}
+                Your cart is empty.
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
     </div>
 </nav>
 
 
+<div class="container" style="background-color: #d7d7d7; padding: 24px; border-radius: 36px; width:900px">
 
-    <div class="container" style="background-color: #d7d7d7; padding: 24px; border-radius: 36px; width:900px">
+    {% block content %}
+    {% endblock %}
 
-        {% block content %}
-        {% endblock %}
-
-    </div>
+</div>
 
 <!--<a style="margin-left: 12px" role="button" href="#" class="btn btn-primary styled-button">About Shop</a>-->
 </body>

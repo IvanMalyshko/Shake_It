@@ -15,7 +15,9 @@ def home(request):  # все коктели
 
 def all_ingredients(request):  # все ингы
     ingredient = Ingredient.objects.all()
-    return render(request, 'shop/shop.html', {'ingredient': ingredient})
+    cart_ingredient_form = CartAddIngredientForm()
+    return render(request, 'shop/shop.html', {'ingredient': ingredient,
+                                              'cart_ingredient_form': cart_ingredient_form})
 
 
 def cocktail_detail(request, cocktail_id):  # коктель детали
@@ -49,6 +51,7 @@ def singupuser(request):
         else:
             return render(request, 'auth/singupuser.html', {'form': UserCreationForm(),
                                                             'error': 'Password did not match'})
+
 def logoutuser(request):
     if request.method == 'POST':
         logout(request)
@@ -61,7 +64,7 @@ def loginuser(request):
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
         if user is None:
             return render(request, 'auth/loginuser.html', {'form': AuthenticationForm(),
-                                                           'error':'User name and password did not match'})
+                                                           'error': 'User name and password did not match'})
         else:
             login(request, user)
             return redirect('home')
