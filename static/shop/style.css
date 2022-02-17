@@ -1,50 +1,138 @@
-.bck-img{
-    background: url("/static/fon.jpg") repeat-y;
+/* ======= GLOBAL ======= */
+
+.align-items-center {
+    display: flex;
+    align-items: center;
 }
 
-.styled-button{
-                    background-color: #20B2AA;
-                    border-color: #20B2AA;
+.styled-button {
+    background-color: #20B2AA;
+    border-color: #20B2AA;
 }
 
-.styled-button:hover{
-                    background-color: #008B8B;
-                    border-color: #008B8B;
+.styled-button:hover {
+    background-color: #008B8B;
+    border-color: #008B8B;
 }
 
-.ingredient-card{
-                    background-color: white;
-                    border-radius: 36px;
-                    box-shadow: 7px 7px 10px #808b8a;
-                    display: flex;
-                    align-items: center;
-                    flex-direction: column;
-                    height:100%;
+.ml-12{
+    margin-left: 12px;
 }
 
-a{
-    color:#20B2AA;
+a {
+    color: #20B2AA;
 }
 
-a:hover{
-    color:#008B8B;
+a:hover {
+    color: #008B8B;
 }
 
-.cocktail-image::after{
-                position: absolute;
-                right: -20px;
-                top: 50%;
-                content: '=';
-                color: black;
-                font-size: 48px;
-                transform: translateY(-50%);
+.top-bar {
+    flex-direction: column;
+    margin-bottom: 6px;
 }
 
-.ingr-shop{
+.ingredient-card {
+    background-color: white;
+    border-radius: 36px;
+    box-shadow: 7px 7px 10px #808b8a;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.cocktail-image::after {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    content: '=';
+    color: black;
+    font-size: 48px;
+    transform: translateY(-50%);
+}
+
+.logo-img {
+    width: 150px;
+    height: 150px;
+
+}
+
+.search-container {
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.search-input {
+    width: 500px;
+    height: 47.5px;
+    border-radius: 4px;
+}
+
+/* ===== HOME PAGE =====*/
+
+.card-list-item {
+    margin-bottom: 24px;
+    padding: 20px;
+}
+
+.cocktail-image-container {
+    display: flex;
+    align-items: center;
+}
+
+.cocktail-ingredients-container {
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cocktail-ingredient-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left:4px;
-    padding-right:4px
 }
 
+.cocktail-ingredient-image {
+    border-radius: 24px;
+    height: 100px;
+    width: 100px;
+}
+
+.number-of-results{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 12px;
+}
+/* ===== INGREDIENT DETAIL =====*/
+
+.ingredient-image-container {
+    display: flex;
+    justify-content: center;
+}
+
+.ingredient-image {
+    max-width: 250px;
+    border-radius: 32px;
+}
+
+/* ===== SHOP =====*/
+
+.shop-ingredient-card-item {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.shop-ingredient-image {
+    max-width: 150px;
+    border-radius: 24px;
+}
+
+.shop-form-margin{
+    text-align: center;
+    margin-bottom: 4px;
+    margin-top: 8px;
+}

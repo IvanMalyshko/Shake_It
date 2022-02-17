@@ -3,38 +3,41 @@
 
 {% block content %}
 
-<div style="align-items: center; flex-direction: column; display: flex; margin-bottom: 24px">
-    <form action="{% url 'search:search_cocktail' %}" method="GET" style="display: flex; align-items: center;">
-        <input name="query" placeholder="Enter cocktail or ingredient..." style="width: 500px">
-        <button  style="margin-left:12px" type="submit" class="btn btn-primary styled-button">
-        Search
+<div class="search-container">
+    <form action="{% url 'search:search_cocktail' %}" method="GET" class="align-items-center">
+        <input class="search-input" name="query" placeholder="Enter cocktail or ingredient...">
+        <button type="submit" class="btn btn-primary styled-button ml-12">
+            Search
         </button>
     </form>
 </div>
 
+<div class="number-of-results">
+    <h5>{{ number_of_results }}</h5>
+</div>
+
 {% for cocktail in cocktail %}
 
-<div class="ingredient-card" style="margin-bottom:24px; padding: 20px;">
+<div class="ingredient-card card-list-item">
     <div style="margin-bottom:24px">
         <a href="{% url 'cocktail_detail' cocktail.id %}"><h4>{{ cocktail.title }}<br></h4></a>
     </div>
     <div class='row'>
-        <div class="col-2" style="display: flex;align-items: center">
+        <div class="col-2 cocktail-image-container">
             <div class="cocktail-image">
                 <img src="{{ cocktail.image.url }}" style="max-width:100px"> <br>
             </div>
         </div>
         <p><br>
-        <div class="col-10 row"
-             style="flex-direction: row; display: flex; flex-wrap:wrap; justify-content: space-between">
-            {% for ingredients in cocktail.ingredients.all %}
-            <div class="col-4" style="display: flex; flex-direction: column; align-items: center;">
-                <h7 style="text-align: center;">{{ ingredients.title }}</h7>
-                <img style="border-radius:24px" src="{{ ingredients.image.url }}" height=100px width=100px><br>
-            </div>
-            {% endfor %}
+        <div class="col-10 row cocktail-ingredients-container">
+        {% for ingredients in cocktail.ingredients.all %}
+        <div class="col-3 cocktail-ingredient-container">
+            <h7 style="text-align: center;">{{ ingredients.title }}</h7>
+            <img class="cocktail-ingredient-image" src="{{ ingredients.image.url }}"><br>
         </div>
+        {% endfor %}
     </div>
+</div>
 </div>
 
 {% endfor %}
