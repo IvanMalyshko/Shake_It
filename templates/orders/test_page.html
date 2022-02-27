@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TEST PAGE</title>
+</head>
+<body>
+{% for order in orders %}
+Yours order number: <a href="{% url 'orders:order_detail' order.id %}">{{ order.id }}</a>
+Created: {{ order.created }}
+City: {{ order.city}}
+Address: {{ order.address }}
+Total Cost: ${{ order.get_total_cost }}
+<br>
+{% endfor %}
+</body>
+</html>

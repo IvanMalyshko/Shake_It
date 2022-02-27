@@ -8,24 +8,24 @@ from django.contrib.auth import login, logout, authenticate
 
 
 # SHOP
-def home(request):  # все коктели
+def home(request):
     cocktail = Cocktail.objects.all()
     return render(request, 'shop/home.html', {'cocktail': cocktail})
 
 
-def all_ingredients(request):  # все ингы
+def all_ingredients(request):
     ingredient = Ingredient.objects.all()
     cart_ingredient_form = CartAddIngredientForm()
     return render(request, 'shop/shop.html', {'ingredient': ingredient,
                                               'cart_ingredient_form': cart_ingredient_form})
 
 
-def cocktail_detail(request, cocktail_id):  # коктель детали
+def cocktail_detail(request, cocktail_id):
     cocktail = get_object_or_404(Cocktail, pk=cocktail_id)
     return render(request, 'cocktail_base/cocktail_detail.html', {'cocktail': cocktail})
 
 
-def ingredient_detail(request, ingredient_id):  # ингра детали
+def ingredient_detail(request, ingredient_id):
     ingredient = get_object_or_404(Ingredient, pk=ingredient_id)
     cart_ingredient_form = CartAddIngredientForm()
     return render(request, 'shop/ingredient_detail.html', {'ingredient': ingredient,
@@ -52,10 +52,12 @@ def singupuser(request):
             return render(request, 'auth/singupuser.html', {'form': UserCreationForm(),
                                                             'error': 'Password did not match'})
 
+
 def logoutuser(request):
     if request.method == 'POST':
         logout(request)
         return redirect('home')
+
 
 def loginuser(request):
     if request.method == 'GET':
