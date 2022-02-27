@@ -1,6 +1,6 @@
 from django import forms
 
-INGREDIENT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 21)] # определяет выбор тавара для добавления в корзину от 1 до 20
+INGREDIENT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 21)]
 
 
 class CartAddIngredientForm(forms.Form):
