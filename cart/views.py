@@ -1,12 +1,11 @@
-from django.shortcuts import render
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 from shop.models import Ingredient
 from .cart import Cart
 from .forms import CartAddIngredientForm
 
-
+@login_required(login_url='/login/')
 @require_POST
 def cart_add(request, ingredient_id):
     cart = Cart(request)
