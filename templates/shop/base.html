@@ -30,7 +30,7 @@
                 <li>
                     {% if user.is_authenticated %}
                     <div style="display: flex; align-items: center;">
-                        Logged in as&nbsp<span style="font-weight: 700">{{ user.username }}</span>
+                        Logged in as&nbsp<a href="{% url 'orders:all_orders' %}"><span style="font-weight: 700">{{ user.username }}</span></a>
                         <form action="{% url 'logoutuser' %}" method="POST">
                             {% csrf_token %}
                             <button style="margin-left:12px" type="submit" class="btn btn-primary styled-button">
@@ -48,6 +48,7 @@
                        class="btn btn-primary styled-button ml-12">Shop
                     </a>
                 </li>
+
                 {% else %}
                 <a href="{% url 'singupuser' %}" class="btn btn-primary styled-button ml-12">
                     Sing Up
@@ -58,6 +59,7 @@
                 {% endif %}
                 </li>
             </ul>
+            {% if user.is_authenticated %}
             <div class="ml-auto" style="margin-top:12px">
                 {% with total_items=cart|length %}
                 {% if cart|length > 0 %}
@@ -71,6 +73,11 @@
                 {% endif %}
                 {% endwith %}
             </div>
+            {% else %}
+            <div class="ml-auto" style="margin-top:12px">
+            Log in to access the store
+            </div>
+            {% endif %}
         </div>
     </div>
 </nav>

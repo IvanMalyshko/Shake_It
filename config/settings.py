@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-cawuz*z7fqpxkwz4h0-plqj5!f$o9*#bfq#%lha^5yb!ohl4pd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'orders',
     'search',
     'haystack',
+    'crispy_forms',
+
 ]
 
 MIDDLEWARE = [
@@ -69,6 +71,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'cart.context_processors.cart',
+
             ],
         },
     },
@@ -120,6 +123,21 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+DATETIME_INPUT_FORMATS = [
+    '%Y-%m-%d %H:%M:%S',
+    '%Y-%m-%d %H:%M:%S.%f',
+    '%Y-%m-%d %H:%M',
+    '%m/%d/%Y %H:%M:%S',
+    '%m/%d/%Y %H:%M:%S.%f',
+    '%m/%d/%Y %H:%M',
+    '%m/%d/%y %H:%M:%S',
+    '%m/%d/%y %H:%M:%S.%f',
+    '%m/%d/%y %H:%M',
+]
+
+
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -149,3 +167,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CART_SESSION_ID = 'cart' # ключ для хранения корзины в сесии
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+
+

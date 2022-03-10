@@ -6,7 +6,7 @@ from shop.models import Ingredient, Cocktail
 from .cart import Cart
 from .forms import CartAddIngredientForm
 
-@login_required(login_url='/login/')
+@login_required(login_url='http://127.0.0.1:8000/login/')
 @require_POST
 def cart_add(request, ingredient_id):
     cart = Cart(request)
@@ -19,6 +19,8 @@ def cart_add(request, ingredient_id):
                  update_quantity=cd['update'])
     return redirect('cart:cart_detail')
 
+
+@login_required(login_url='http://127.0.0.1:8000/login/')
 def cocktail_all_ingredients_add(request, cocktail_id):
     cart = Cart(request)
     cocktail = get_object_or_404(Cocktail, id=cocktail_id)

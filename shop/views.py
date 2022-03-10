@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Cocktail, Ingredient
 from cart.forms import CartAddIngredientForm
@@ -13,6 +14,7 @@ def home(request):
     return render(request, 'shop/home.html', {'cocktail': cocktail})
 
 
+@login_required(login_url='http://127.0.0.1:8000/login/')
 def all_ingredients(request):
     ingredient = Ingredient.objects.all()
     cart_ingredient_form = CartAddIngredientForm()
@@ -25,6 +27,7 @@ def cocktail_detail(request, cocktail_id):
     return render(request, 'cocktail_base/cocktail_detail.html', {'cocktail': cocktail})
 
 
+@login_required(login_url='http://127.0.0.1:8000/login/')
 def ingredient_detail(request, ingredient_id):
     ingredient = get_object_or_404(Ingredient, pk=ingredient_id)
     cart_ingredient_form = CartAddIngredientForm()
