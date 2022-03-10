@@ -3,30 +3,40 @@
 {% block content %}
 
 
-<div class="row cocktail-content">
+<div class="row">
+    <div class="search-container">
+        <form action="{% url 'search:search_ingredient' %}" method="GET" class="align-items-center">
+            <input name="query" placeholder="Enter ingredient..." class="search-input">
+            <button type="submit" class="btn btn-primary styled-button ml-12">
+                Search
+            </button>
+        </form>
+    </div>
+    <div class="number-of-results">
+        <h5>{{ number_of_results }}</h5>
+    </div>
     {% for ingredients in ingredient %}
 
     <div class="col-4" style="padding:4px">
-       <div class="ingredient-card " style="padding-left:20px; padding-right:20px;">
+        <div class="ingredient-card shop-ingredient-card-item">
             <a href="{% url 'ingredient_detail' ingredients.id %}">
                 <h3 style="text-align: center;">{{ ingredients.title }}<br></h3>
             </a>
             <h5>${{ ingredients.price }} <br></h5>
-            <img src="{{ ingredients.image.url }}" style="max-width:150px">
+            <img src="{{ ingredients.image.url }}" class="shop-ingredient-image">
             <div style="height:100%"></div>
+
+            <div class="shop-form-margin">
+                <form action="{% url 'cart:cart_add' ingredients.id %}" method="post">
+                    {{ cart_ingredient_form }}
+                    {% csrf_token %}
+                    <input type="submit" value="Add to cart" class="btn btn-primary styled-button">
+                </form>
+            </div>
+
             <h6>{{ ingredients.category }}<br></h6>
-       </div>
-<!--        {{ ingredients.description }}-->
+        </div>
     </div>
-
-<!--    <div> # почему не появляется кнопка с колличеством(-->
-<!--        <form action="{% url "cart:cart_add" ingredients.id %}" method="post">-->
-<!--            {{ cart_ingredient_form }}-->
-<!--            {% csrf_token %}-->
-<!--        <input type="submit" value="Add to cart">-->
-<!--        </form>-->
-<!--    </div>-->
-{% endfor %}
+    {% endfor %}
 </div>
-
 {% endblock %}

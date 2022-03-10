@@ -30,7 +30,7 @@ class Cart(object):
             self.cart[ingredient_id]['quantity'] = quantity
         else:
             self.cart[ingredient_id]['quantity'] += quantity
-        self.save()  # сохранение корзины в сесии
+        self.save()
 
     def save(self):
         # Обновление сессии cart

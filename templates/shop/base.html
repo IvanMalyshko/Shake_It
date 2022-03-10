@@ -8,64 +8,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'shop/style.css'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'shop/style.css'%}?{% now 'U' %}">
 
-    <link rel="icon" type="image/png" href="{% static " shop
-    /logo.png" %}">
+    <link rel="icon" type="image/png" href="{% static 'shop/logo1.png' %}">
 
     <title>Shake_It</title>
+
 </head>
-<body>
+<body style="background-image: url('/static/fon.jpg'); background-repeat: repeat;">
 
 <nav id="topNav" class="navbar navbar-expand-md navbar-light">
     <div class="container" style="align-items: end;">
         <a class="navbar-brand" href="{% url 'home' %}">
-            <img src="{% static "shop/logo.png" %}" width=150px height=150px class="d-inline-block align-top"
-            alt="Ivan's Logo">
+            <img src="{% static 'shop/logo1.png' %}" class="logo-img" alt="Shake It">
         </a>
-        <div class="collapse navbar-collapse text-center" id="navbarNav"
-             style="flex-direction: column; margin-bottom: 6px;">
+        <div class="collapse navbar-collapse text-center top-bar" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li>
                     {% if user.is_authenticated %}
-                    Logged in as {{ user.username }}
-                    <form action="{% url 'logoutuser' %}" method="POST">
-                        {{ cart_ingredient_form }}
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-primary styled-button">Logout</button>
-                    </form>
-                    <li class="nav-item">
-                        <a style="margin-left: 12px" role="button" href="{% url 'cart:cart_detail' %}"
-                           class="btn btn-primary styled-button">Cart
-                        </a>
-                    </li>
-                     <li>
-                        <a style="margin-left: 12px" role="button" href="{% url 'all_ingredients' %}"
-                           class="btn btn-primary styled-button">Shop
-                        </a>
-                     </li>
-                    {% else %}
-                        <a href="{% url 'singupuser' %}" class="btn btn-primary styled-button">Sing Up</a>
-                        <a href="{% url 'loginuser' %}" class="btn btn-primary styled-button">Login</a>
-                    {% endif %}
+                    <div style="display: flex; align-items: center;">
+                        Logged in as&nbsp<a href="{% url 'orders:all_orders' %}"><span style="font-weight: 700">{{ user.username }}</span></a>
+                        <form action="{% url 'logoutuser' %}" method="POST">
+                            {% csrf_token %}
+                            <button style="margin-left:12px" type="submit" class="btn btn-primary styled-button">
+                                Logout
+                            </button>
+                        </form>
+                    </div>
+                <li class="nav-item">
+                    <a role="button" href="{% url 'cart:cart_detail' %}"
+                       class="btn btn-primary styled-button ml-12">Cart
+                    </a>
+                </li>
+                <li>
+                    <a role="button" href="{% url 'all_ingredients' %}"
+                       class="btn btn-primary styled-button ml-12">Shop
+                    </a>
                 </li>
 
+                {% else %}
+                <a href="{% url 'singupuser' %}" class="btn btn-primary styled-button ml-12">
+                    Sing Up
+                </a>
+                <a href="{% url 'loginuser' %}" class="btn btn-primary styled-button ml-12">
+                    Login
+                </a>
+                {% endif %}
+                </li>
             </ul>
+            {% if user.is_authenticated %}
             <div class="ml-auto" style="margin-top:12px">
                 {% with total_items=cart|length %}
                 {% if cart|length > 0 %}
                 Your cart:
-                <a href="{% url "cart:cart_detail" %}">
-                {{ total_items }} item{{ total_items|pluralize }},
-                ${{ cart.get_total_price }}
+                <a href="{% url 'cart:cart_detail' %}">
+                    {{ total_items }} item{{ total_items|pluralize }},
+                    ${{ cart.get_total_price }}
                 </a>
                 {% else %}
                 Your cart is empty.
                 {% endif %}
                 {% endwith %}
             </div>
+            {% else %}
+            <div class="ml-auto" style="margin-top:12px">
+            Log in to access the store
+            </div>
+            {% endif %}
         </div>
     </div>
 </nav>

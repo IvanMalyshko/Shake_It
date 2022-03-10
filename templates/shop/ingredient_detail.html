@@ -2,19 +2,18 @@
 {% load static %}
 
 {% block content %}
-    <div class="product-detail">
-        <div style="display:flex; justify-content: center">
-            <img src="{{ ingredient.image.url }}" style="max-width:250px; border-radius:32px"><br>
+    <div>
+        <div class="ingredient-image-container">
+            <img src="{{ ingredient.image.url }}" class="ingredient-image"><br>
         </div>
             <h4>{{ ingredient.title }}</h4>
-        <p class="price"><h6>${{ ingredient.price }}</h6></p>
+        <p><h6>${{ ingredient.price }}</h6></p>
         <h6>{{ ingredient.description }}</h6>
-        <form action="{% url "cart:cart_add" ingredient.id %}" method="post">
+        <form action="{% url 'cart:cart_add' ingredient.id %}" method="post">
             {{ cart_ingredient_form }}
             {% csrf_token %}
         <input class="btn btn-primary styled-button" type="submit" value="Add to cart">
         </form>
-
-
     </div>
+
 {% endblock %}

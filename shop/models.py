@@ -7,8 +7,8 @@ class Category(models.Model):
 
     class Meta:
         ordering = ('title',)
-        verbose_name = 'Категории'
-        verbose_name_plural = 'Категории'
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
 
     def __str__(self):
         return self.title
@@ -27,8 +27,8 @@ class Ingredient(models.Model):
 
     class Meta:
         ordering = ('title',)
-        verbose_name = 'Ингредиенты'
-        verbose_name_plural = 'Ингредиенты'
+        verbose_name = 'Ingredient'
+        verbose_name_plural = 'Ingredients'
 
     def get_absolute_url(self):
         return reverse('ingredient_detail',
@@ -46,8 +46,11 @@ class Cocktail(models.Model):
 
     class Meta:
         ordering = ('title',)
-        verbose_name = 'Коктели'
-        verbose_name_plural = 'Коктели'
+        verbose_name = 'Cocktail'
+        verbose_name_plural = 'Cocktails'
 
     def __str__(self):
         return self.title
+
+    def __iter__(self):
+        return iter(self.ingredients.all())

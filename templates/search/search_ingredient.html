@@ -1,0 +1,42 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block content %}
+<h3>Found {{ number_of_results }} results</h3>
+<div class="row">
+    <div class="search-container">
+        <form action="{% url 'search:search_ingredient' %}" method="GET" class="align-items-center">
+            <input name="query" placeholder="Enter ingredient..." class="search-input">
+            <button type="submit" class="btn btn-primary styled-button ml-12">
+                Search
+            </button>
+        </form>
+    </div>
+
+    {% for ingredients in ingredient %}
+
+    <div class="col-4" style="padding:4px">
+        <div class="ingredient-card shop-ingredient-card-item">
+            <a href="{% url 'ingredient_detail' ingredients.id %}">
+                <h3 style="text-align: center;">{{ ingredients.title }}<br></h3>
+            </a>
+            <h5>${{ ingredients.price }} <br></h5>
+            <img src="{{ ingredients.image.url }}" class="shop-ingredient-image">
+            <div style="height:100%"></div>
+
+            <div>
+                <form action="{% url 'cart:cart_add' ingredients.id %}" method="post">
+                    {{ cart_ingredient_form }}
+                    {% csrf_token %}
+                    <input type="submit" value="Add to cart">
+                </form>
+            </div>
+
+            <h6>{{ ingredients.category }}<br></h6>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}
