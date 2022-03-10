@@ -1,3 +1,6 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +8,26 @@
     <title>Title</title>
 </head>
 <body>
-ORDER DETAIL
-{{ order.address }}
+{% block content %}
+<div class="order-info">
+
+    <h5>Order №: {{ order.id }} - {{ order.created }}</h5>
+</div>
+Address: {{ order.city }}, {{ order.address }}
+<ul>
+    {% for item in order_items %}
+      <li>
+         {{ item.ingredient.title }}: {{ item.quantity }} x ${{ item.price }} = ${{ item.get_cost }}
+      </li>
+    {% endfor %}
+</ul>
 Total Cost: ${{ order.get_total_cost }}
-<!--{% for item in order_item %}-->
-<!--{{ item.id }}-->
-<!--{% endfor %}-->
+
+{% endblock %}
+
+
+
+
+
 </body>
 </html>

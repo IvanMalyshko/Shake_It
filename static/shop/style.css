@@ -136,3 +136,9 @@ a:hover {
     margin-bottom: 4px;
     margin-top: 8px;
 }
+
+/* ===== COCTAIL DETAIL =====*/
+.add-cart-img{
+    width: 56px;
+    height: 40px;
+}
