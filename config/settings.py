@@ -123,17 +123,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-DATETIME_INPUT_FORMATS = [
-    '%Y-%m-%d %H:%M:%S',
-    '%Y-%m-%d %H:%M:%S.%f',
-    '%Y-%m-%d %H:%M',
-    '%m/%d/%Y %H:%M:%S',
-    '%m/%d/%Y %H:%M:%S.%f',
-    '%m/%d/%Y %H:%M',
-    '%m/%d/%y %H:%M:%S',
-    '%m/%d/%y %H:%M:%S.%f',
-    '%m/%d/%y %H:%M',
-]
 
 
 
